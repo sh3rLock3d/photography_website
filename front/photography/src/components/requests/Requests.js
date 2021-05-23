@@ -1,6 +1,8 @@
 const URL = "http://localhost:3001"
 
+//const URL = "https://sharp-mayfly-8.loca.lt"
 async function gethttp(url) {
+  console.log(url)
     let response = await fetch(url);
     let responsemessage = await response.text();
     return { body: JSON.parse(responsemessage), status: response.status };

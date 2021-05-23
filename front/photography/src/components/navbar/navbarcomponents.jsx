@@ -3,7 +3,7 @@ import './navbar.css'
 function Navbar() {
     return (
 
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg border-right border-bottom">
             <div class="container col-12">
 
                 <a class="navbar-brand" href="index.html">Masoud Photography</a>
@@ -33,9 +33,9 @@ function Navbar() {
                     </ul>
 
                     <ul class="social-icon ml-lg-3">
-                        <li><a href="#" class="fa fa-telegram"></a></li>
-                        <li><a href="#" class="fa fa-twitter"></a></li>
-                        <li><a href="#" class="fa fa-instagram"></a></li>
+                        <li><a href="#" class="fa fa-telegram"></a> </li>
+                        <li><a href="#" class="fa fa-twitter"></a> </li>
+                        <li><a href="#" class="fa fa-instagram"></a> </li>
                     </ul>
                 </div>
 

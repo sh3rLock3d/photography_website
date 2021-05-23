@@ -135,9 +135,17 @@ app.post('/api/addnewpic', (req, res) => {
   } else {
     post.set("descriptin", "")
   }
-
+  console.log(body.tags)
   if (body.tags) {
-    //todo do the taggs
+    let allPicTags = body.tags
+    console.log(allPicTags)
+    allPicTags = allPicTags.replace(/\s/g, '');
+    allPicTags = allPicTags.split(",")
+    console.log(allPicTags)
+    post.set("tags", allPicTags)
+
+  } else {
+    post.set("tags", [])
   }
 
   const ImageFile = Parse.Object.extend("ImageFile");
@@ -157,11 +165,6 @@ app.post('/api/addnewpic', (req, res) => {
       res.status(400).send({ error: "choose a title" })
 
   )
-
-
-
-
-
 })
 
 app.get('/api/getallpics', function (req, res) {
@@ -173,12 +176,30 @@ app.get('/api/getallpics', function (req, res) {
       for (let i = 0; i < results.length; i++) {
         allPosts.push(results[i])
       }
-      res.send({ message: allPosts})
+      res.send({ message: allPosts })
     },
     (error) => {
 
     }
   )
+})
+
+
+app.get('/api/getpicture', function (req, res) {
+  const compress = req.query.c
+  const fileId = req.query.id
+  console.log(compress)
+  console.log(fileId)
+  const ImageFile = Parse.Object.extend("ImageFile");
+  const query = new Parse.Query(ImageFile);
+  query.get(fileId)
+    .then((fileinfo) => {
+      //todo compress
+      res.send({ message: fileinfo.get("file")})
+    }, (error) => {
+      res.status(400).send({ error: "object not found" })
+    });
+
 })
 
 app.listen(3001)
